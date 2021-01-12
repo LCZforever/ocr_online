@@ -1,6 +1,7 @@
 # ocr_online
-利用在线ocr，批量转换图片为文字
+利用在线ocr，批量转换图片为文字，格式为txt
 
+环境：python3.8
 所需库：selenium，re，os
 
 主要参数：
