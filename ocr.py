@@ -7,19 +7,19 @@ import re
 # 转换单个文件，输入为文件绝对路径
 def convert(file_name, output_folder):
     options = webdriver.ChromeOptions()
-    prefs = {"download.default_directory": output_folder}    #下载路径
+    prefs = {"download.default_directory": output_folder}      #设置默认下载路径
     options.add_experimental_option("prefs", prefs)
     driver = webdriver.Chrome(chrome_options=options)
     driver.implicitly_wait(100)                                #设定隐性等待超时时间
-    driver.get('http://ocrmaker.com/')                        #ocr网址
-    time.sleep(0.7)
+    driver.get('http://ocrmaker.com/')                         #ocr网址
+    time.sleep(0.8)
     action = ActionChains(driver)
-    action.move_by_offset(0, 0).click().perform()
+    action.move_by_offset(0, 0).click().perform()                    #点掉小程序码
     driver.find_element_by_id("imageFile").send_keys(file_name)      # 定位上传按钮，添加本地文件
     time.sleep(1)
-    driver.find_element_by_xpath("//*[@id='btnStartOCR']/a").click()
-    driver.find_element_by_xpath("//*[@id='sucOrErrMesgDiv']/button").click()
-    driver.find_element_by_id("btnDownloadText").click()
+    driver.find_element_by_xpath("//*[@id='btnStartOCR']/a").click()               #点击开始
+    driver.find_element_by_xpath("//*[@id='sucOrErrMesgDiv']/button").click()      #等待转换完成
+    driver.find_element_by_id("btnDownloadText").click()                           #点击下载
     time.sleep(2)
     driver.quit()
 
